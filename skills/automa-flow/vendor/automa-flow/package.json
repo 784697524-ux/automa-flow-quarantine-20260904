@@ -1,0 +1,30 @@
+{
+  "name": "@ali/aitable-workflow-automa-flow",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264",
+  "description": "Automa 浏览器自动化工作流的离线生成器：块注册表、WorkflowBuilder、图结构 lint、场景模板与 CLI。产物为可直接导入 Automa 扩展的 .automa.json。",
+  "type": "module",
+  "bin": {
+    "automa-flow": "./bin/automa-flow.mjs"
+  },
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "scripts": {
+    "registry": "node scripts/extract-block-registry.mjs",
+    "skill:pack": "node scripts/pack-skill.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "test": "vitest run",
+    "dev": "tsx --tsconfig ../../tsconfig.json src/cli/index.ts"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.20.6",
+    "vitest": "^3.0.0"
+  }
+}

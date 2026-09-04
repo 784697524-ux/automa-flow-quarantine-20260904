@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">automa-flow 工作流</title>
+  <desc id="desc">输入自然语言、AI 表结构与录制选择器，经模板或 WorkflowBuilder 构建、生产校验和 doctor 检查，输出可导入 Automa 的 JSON；最后仍需真实浏览器运行和副作用读回。</desc>
+
+  <rect width="1200" height="430" rx="24" fill="#F5F8FA"/>
+  <text x="54" y="58" fill="#152536" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="34" font-weight="750">从需求到可验证交付</text>
+  <text x="54" y="89" fill="#657789" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">facts → graph → gates → browser evidence</text>
+
+  <g transform="translate(54 132)" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif">
+    <path d="M196 76H236M430 76H470M664 76H704M898 76H938" stroke="#2B6E87" stroke-width="3"/>
+    <path d="M228 69L240 76L228 83M462 69L474 76L462 83M696 69L708 76L696 83M930 69L942 76L930 83" fill="none" stroke="#2B6E87" stroke-width="3"/>
+
+    <g>
+      <rect width="196" height="152" rx="15" fill="#FFFFFF" stroke="#BED0DC" stroke-width="2"/>
+      <text x="20" y="34" fill="#2B6E87" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">01 · FACTS</text>
+      <text x="20" y="72" fill="#152536" font-size="22" font-weight="700">输入真实契约</text>
+      <text x="20" y="105" fill="#657789" font-size="18">自然语言 · AI 表</text>
+      <text x="20" y="131" fill="#657789" font-size="18">录制 selector</text>
+    </g>
+
+    <g transform="translate(238 0)">
+      <rect width="196" height="152" rx="15" fill="#EAF9F0" stroke="#76B991" stroke-width="2"/>
+      <text x="20" y="34" fill="#2D7A4B" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">02 · BUILD</text>
+      <text x="20" y="72" fill="#152536" font-size="22" font-weight="700">构建图结构</text>
+      <text x="20" y="105" fill="#587064" font-size="18">模板 / Builder</text>
+      <text x="20" y="131" fill="#587064" font-size="18">注册表作事实源</text>
+    </g>
+
+    <g transform="translate(476 0)">
+      <rect width="196" height="152" rx="15" fill="#FFFFFF" stroke="#BED0DC" stroke-width="2"/>
+      <text x="20" y="34" fill="#2B6E87" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">03 · GATE</text>
+      <text x="20" y="72" fill="#152536" font-size="22" font-weight="700">生产校验</text>
+      <text x="20" y="105" fill="#657789" font-size="18">validate</text>
+      <text x="20" y="131" fill="#657789" font-size="18">NL case · doctor</text>
+    </g>
+
+    <g transform="translate(714 0)">
+      <rect width="196" height="152" rx="15" fill="#EAF9F0" stroke="#76B991" stroke-width="2"/>
+      <text x="20" y="34" fill="#2D7A4B" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">04 · JSON</text>
+      <text x="20" y="72" fill="#152536" font-size="22" font-weight="700">导入 Automa</text>
+      <text x="20" y="105" fill="#587064" font-size="18">.automa.json</text>
+      <text x="20" y="131" fill="#587064" font-size="18">显式运行依赖</text>
+    </g>
+
+    <g transform="translate(952 0)">
+      <rect width="140" height="152" rx="15" fill="#132434" stroke="#132434" stroke-width="2"/>
+      <text x="18" y="34" fill="#78E6A4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700">05 · LIVE</text>
+      <text x="18" y="72" fill="#FFFFFF" font-size="21" font-weight="700">浏览器实跑</text>
+      <text x="18" y="105" fill="#B4C4D2" font-size="18">执行结果</text>
+      <text x="18" y="131" fill="#B4C4D2" font-size="18">副作用读回</text>
+    </g>
+  </g>
+
+  <g transform="translate(54 328)">
+    <rect width="1092" height="54" rx="12" fill="#FFF7DF" stroke="#E7C96B"/>
+    <text x="22" y="34" fill="#715A13" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="20" font-weight="650">离线通过只证明结构正确；只有真实浏览器执行并读回目标系统结果，才算端到端完成。</text>
+  </g>
+</svg>

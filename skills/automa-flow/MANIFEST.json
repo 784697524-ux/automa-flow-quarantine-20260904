@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "name": "automa-flow",
+  "packageType": "skill",
+  "deterministic": {
+    "fileOrder": "lexicographic",
+    "timestamps": "2020-01-01T00:00:00.000Z",
+    "zipExtraFields": "stripped-by-zip-X"
+  },
+  "entries": [
+    {
+      "path": "SKILL.md",
+      "size": 10058,
+      "sha256": "758ef7c3318af1501f2d40dc012a6834fc0f5d0cd9df985e499c89d538a1123f"
+    },
+    {
+      "path": "delivery.md",
+      "size": 7484,
+      "sha256": "8af2742fb51ce629ebfe722c2481339030752c617dc6b5d088ea6b8a7ac5f675"
+    },
+    {
+      "path": "openapi.md",
+      "size": 6835,
+      "sha256": "624806f7bad1ce89b688b00557eb8c0f893125cbb03a5a704f5988fe38bbffc0"
+    },
+    {
+      "path": "production-hardening.md",
+      "size": 7338,
+      "sha256": "4c7f3e30bb43bd5303e113c888683cdc9cfc1e6c02316490e1bd3f528dd7d732"
+    },
+    {
+      "path": "recording.md",
+      "size": 4464,
+      "sha256": "748c7e5725880ce2948806a00a2c0b0ed02b171cd5b32d8d90dd75030cf09b8f"
+    },
+    {
+      "path": "vendor/automa-flow/README.md",
+      "size": 11249,
+      "sha256": "f9ee77d1b0958ee1467c62a51967dcb531dbb9f93445f3a3be31f5aa636336ec"
+    },
+    {
+      "path": "vendor/automa-flow/SKILL-PACKAGE-NOTES.md",
+      "size": 643,
+      "sha256": "71e3a5aae3bcc58ec067570d6ac2c18a607e626785d2b9aa78fc8dea7a248a7f"
+    },
+    {
+      "path": "vendor/automa-flow/bin/automa-flow.mjs",
+      "size": 853,
+      "sha256": "5eab6e2c44084c76793c0078d6b420d0826dd2f7a11306b83a8f0e512df46c0a"
+    },
+    {
+      "path": "vendor/automa-flow/package.json",
+      "size": 1082,
+      "sha256": "66b936f8505ef41cd0bb4899eeb6f438da8658f8d8244f4bb5ef2cd52b2ff6ab"
+    },
+    {
+      "path": "vendor/automa-flow/pnpm-lock.yaml",
+      "size": 32472,
+      "sha256": "8f5442b84049a79063d09c9ac0c7dfef43e9ce61a8df835bfbb96851b894f097"
+    },
+    {
+      "path": "vendor/automa-flow/scripts/extract-block-registry.mjs",
+      "size": 4525,
+      "sha256": "b244fb24715aa64d1d96cbb4729ad04c015163c45e04f617076ee0219d5022f9"
+    },
+    {
+      "path": "vendor/automa-flow/scripts/pack-skill.mjs",
+      "size": 2978,
+      "sha256": "98c122001903a0263d4184565516857aeb82c1c3b2e416b97383111d0d23a239"
+    },
+    {
+      "path": "vendor/automa-flow/src/attachment-download.ts",
+      "size": 716,
+      "sha256": "01155f5824f8c37910ff48a0474bdad1a366365ccb7657fcf4e1c637bb2fc2a5"
+    },
+    {
+      "path": "vendor/automa-flow/src/builder/builder.ts",
+      "size": 10476,
+      "sha256": "3f59146c23dcefb316f299ea984ee1e8734460c597a58812e38b385c6eb36b76"
+    },
+    {
+      "path": "vendor/automa-flow/src/cli/index.ts",
+      "size": 18932,
+      "sha256": "e7973132b373ead4bcf560f129a28116eda68c1fe2a0e7d2cf1555b2f1e53c0c"
+    },
+    {
+      "path": "vendor/automa-flow/src/doctor.ts",
+      "size": 6637,
+      "sha256": "e3e37d762a3a9c863cf444f1fa8750e2b40c158b6b25b5f12d765f1cd0172378"
+    },
+    {
+      "path": "vendor/automa-flow/src/generated/block-registry.json",
+      "size": 35318,
+      "sha256": "d90815efe1552a5397939914c1cff51e9f4f457576c90e29b68f8e85ad90f915"
+    },
+    {
+      "path": "vendor/automa-flow/src/id.ts",
+      "size": 624,
+      "sha256": "1f13b09cd57c03cb31354783bfc13f40963d3107386964f7efe2372cc30ab635"
+    },
+    {
+      "path": "vendor/automa-flow/src/index.ts",
+      "size": 874,
+      "sha256": "828e6bc985cdae2d73938e807ba55226818450f5690298140b9632fdcdaf8abc"
+    },
+    {
+      "path": "vendor/automa-flow/src/lint/lint.ts",
+      "size": 34411,
+      "sha256": "0713c7ec84c911f37c11f29625a72828e4bfd478a6d3c14b052f8977096a8bb2"
+    },
+    {
+      "path": "vendor/automa-flow/src/nl-case.ts",
+      "size": 4828,
+      "sha256": "c33092f18fd4d4a0af161f5e3495f5949746c43317e74521386f13b162e78000"
+    },
+    {
+      "path": "vendor/automa-flow/src/recording.ts",
+      "size": 15296,
+      "sha256": "5f7b7121dcf72dd9221ec75223d54a52b866a1c78af5e032e4fdd7095dd7eaa2"
+    },
+    {
+      "path": "vendor/automa-flow/src/registry.ts",
+      "size": 1439,
+      "sha256": "42e029527536d167a15e1f8e2eb06bf296326b4057a3cf91f877fc81cf5e897c"
+    },
+    {
+      "path": "vendor/automa-flow/src/templates/douyin-publish.ts",
+      "size": 12677,
+      "sha256": "093719f72d245ed1b30d528a39e9302bbdcb2e4f38159a9cab0c35f2ee7fa8c1"
+    },
+    {
+      "path": "vendor/automa-flow/src/templates/xhs-publish.ts",
+      "size": 10132,
+      "sha256": "cd563bdf6bc6de66cac5a77677cfae4ae238b0232306bfbd6da41a5c0b7ead56"
+    },
+    {
+      "path": "vendor/automa-flow/src/templating.ts",
+      "size": 3167,
+      "sha256": "f039da1464de75344e43e1f03af975e4017ac3f3a71c919e08f335a256f7e3b8"
+    },
+    {
+      "path": "vendor/automa-flow/src/types.ts",
+      "size": 3742,
+      "sha256": "70d656ee7c95c991a13ee955573778a2ac69fb2c1f4490c21c2a3fc4eb2e4311"
+    },
+    {
+      "path": "vendor/automa-flow/test/cli-recording.test.ts",
+      "size": 15549,
+      "sha256": "9d4c66b6c9383f1fe94b7e6eca88947d78a85a13196fc38baad719653fafabb3"
+    },
+    {
+      "path": "vendor/automa-flow/test/douyin.test.ts",
+      "size": 6623,
+      "sha256": "64231a0195ac27f89da397f5b0f4d26e7183862f0ed35f3777154b56b56e1bd3"
+    },
+    {
+      "path": "vendor/automa-flow/test/fixtures/xhs-publish.sample.json",
+      "size": 11850,
+      "sha256": "7a77698e8dcdea1244bcafeb374366157b1415a411de7250a0f620061f854232"
+    },
+    {
+      "path": "vendor/automa-flow/test/lint.test.ts",
+      "size": 18542,
+      "sha256": "8c0bab65f292ca0b61b6a75481ac49985da37ecd38557700430880366e5e0085"
+    },
+    {
+      "path": "vendor/automa-flow/test/nl-cases.test.ts",
+      "size": 2368,
+      "sha256": "9ae366563990399b4e4eca23954c5bd12cd065cec17dff7741a7cb2617c2492b"
+    },
+    {
+      "path": "vendor/automa-flow/test/nl-cases/douyin-publish.md",
+      "size": 1733,
+      "sha256": "0884ec3a03bf9da4e54155b108aec38bc6c625e5928203b38e8b8255f0bc60e9"
+    },
+    {
+      "path": "vendor/automa-flow/test/nl-cases/xhs-publish.md",
+      "size": 1561,
+      "sha256": "e144205e7a52536a60df77776f80d481a827f94bafadddfbd2bf338bdf5cf448"
+    },
+    {
+      "path": "vendor/automa-flow/test/recording.test.ts",
+      "size": 9270,
+      "sha256": "ba4d9ad2fc3fd4f3abcd9ab947748b95c9dfd9d4b8fb1f0e4ab21c94a797d850"
+    },
+    {
+      "path": "vendor/automa-flow/test/registry.test.ts",
+      "size": 2520,
+      "sha256": "eb5fdeb847c777a6750890155753573239dbe043faa5ba3cf801eb00b418a94c"
+    },
+    {
+      "path": "vendor/automa-flow/test/roundtrip.test.ts",
+      "size": 4801,
+      "sha256": "58bafc6cf12d147df767da7884de3fee9b3a9f48b834f79bd640e490dbfb4823"
+    },
+    {
+      "path": "vendor/automa-flow/test/template.test.ts",
+      "size": 4724,
+      "sha256": "5adf50d9fb24c0ebc954c1a73e484930581ac39fc8ae3869546ed74937a4ad80"
+    },
+    {
+      "path": "vendor/automa-flow/tsconfig.json",
+      "size": 471,
+      "sha256": "54da0ed8b1a84fe44f2912dfa733c02ca31b1d98500737e95e29403c4346c35e"
+    },
+    {
+      "path": "vendor/automa-flow/tsconfig.test.json",
+      "size": 168,
+      "sha256": "028822e00cd27578751a04a6e8de156e5ee6dae8cbb0180893d87a65bd39595c"
+    },
+    {
+      "path": "vendor/automa-flow/vitest.config.ts",
+      "size": 215,
+      "sha256": "5aa71d3944225f3f2059649a43c087cff357673a17cd56f3b8b82ed63ce82fc5"
+    }
+  ]
+}

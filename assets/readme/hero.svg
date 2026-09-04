@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">automa-flow</title>
+  <desc id="desc">把自然语言、AI 表变量和录制证据转换为可校验 Automa 工作流 JSON 的 Agent Skill 与 CLI。</desc>
+
+  <rect width="1200" height="400" rx="28" fill="#081018"/>
+  <path d="M0 330H1200" stroke="#1C2A38"/>
+  <path d="M650 0V330" stroke="#142230"/>
+
+  <g transform="translate(58 54)">
+    <text x="0" y="0" dominant-baseline="hanging" fill="#65D8FF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" letter-spacing="2">AGENT SKILL · AUTOMA JSON TOOLCHAIN</text>
+    <text x="0" y="78" fill="#F7FAFC" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="72" font-weight="750">automa-flow</text>
+    <text x="0" y="128" fill="#A8B7C7" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif" font-size="27" font-weight="500">自然语言 → 可校验的 Automa 工作流</text>
+    <text x="0" y="180" fill="#7F91A6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">registry  /  builder  /  lint  /  doctor</text>
+
+    <g transform="translate(0 222)">
+      <rect width="168" height="40" rx="20" fill="#102231" stroke="#2B5168"/>
+      <text x="84" y="26" text-anchor="middle" fill="#BDEEFF" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">61 blocks</text>
+      <rect x="180" width="168" height="40" rx="20" fill="#10251D" stroke="#2D5C45"/>
+      <text x="264" y="26" text-anchor="middle" fill="#BDF8D1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">production lint</text>
+      <rect x="360" width="140" height="40" rx="20" fill="#171D2C" stroke="#3C4967"/>
+      <text x="430" y="26" text-anchor="middle" fill="#CFD8F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">95 tests</text>
+    </g>
+  </g>
+
+  <g transform="translate(690 62)" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, sans-serif">
+    <path d="M125 60H160" stroke="#65D8FF" stroke-width="3"/>
+    <path d="M305 60H340" stroke="#65D8FF" stroke-width="3"/>
+    <path d="M329 54L340 60L329 66" fill="none" stroke="#65D8FF" stroke-width="3"/>
+
+    <g>
+      <rect width="125" height="120" rx="16" fill="#0D1924" stroke="#294052" stroke-width="2"/>
+      <circle cx="125" cy="60" r="6" fill="#65D8FF"/>
+      <text x="14" y="38" fill="#7F91A6" font-size="17" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">INPUT</text>
+      <text x="14" y="72" fill="#F7FAFC" font-size="20" font-weight="650">需求 + 证据</text>
+      <text x="14" y="99" fill="#8FA1B5" font-size="17">AI 表 · 录制</text>
+    </g>
+
+    <g transform="translate(160 0)">
+      <circle cx="0" cy="60" r="6" fill="#65D8FF"/>
+      <rect width="145" height="120" rx="16" fill="#10251D" stroke="#337554" stroke-width="2"/>
+      <circle cx="145" cy="60" r="6" fill="#78E6A4"/>
+      <text x="14" y="38" fill="#78E6A4" font-size="17" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">BUILD</text>
+      <text x="14" y="72" fill="#F7FAFC" font-size="19" font-weight="650">模板 / Builder</text>
+      <text x="14" y="99" fill="#8FA1B5" font-size="17">确定性图结构</text>
+    </g>
+
+    <g transform="translate(340 0)">
+      <circle cx="0" cy="60" r="6" fill="#78E6A4"/>
+      <rect width="160" height="120" rx="16" fill="#0D1924" stroke="#294052" stroke-width="2"/>
+      <text x="14" y="38" fill="#7F91A6" font-size="17" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">OUTPUT</text>
+      <text x="14" y="72" fill="#F7FAFC" font-size="20" font-weight="650">.automa.json</text>
+      <text x="14" y="99" fill="#8FA1B5" font-size="17">可导入工作流</text>
+    </g>
+
+    <g transform="translate(18 160)">
+      <rect width="464" height="94" rx="14" fill="#07131D" stroke="#243849"/>
+      <circle cx="22" cy="22" r="5" fill="#78E6A4"/>
+      <text x="40" y="28" fill="#78E6A4" font-size="16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">$ automa-flow validate --production</text>
+      <text x="22" y="63" fill="#DDE6EE" font-size="18" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">graph ✓  variables ✓  runtime gates ✓</text>
+    </g>
+  </g>
+
+  <g transform="translate(58 355)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">
+    <text fill="#73869A">OFFLINE GENERATOR</text>
+    <text x="224" fill="#73869A">DETERMINISTIC OUTPUT</text>
+    <text x="490" fill="#73869A">EXPLICIT RUNTIME CONTRACT</text>
+  </g>
+</svg>
