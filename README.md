@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <code>61-block registry</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>8 CLI commands</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>2 templates</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>95 tests passing</code>
+  <code>61-block registry</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>8 CLI commands</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>2 templates</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>97 tests passing</code>
 </p>
 
 `automa-flow` 把 Automa 编辑器里的手工拖拽，变成 agent、代码或 CLI 可重复生成并校验的 `.automa.json`。Agent 负责理解自然语言，CLI 负责用固定的块注册表、图连接规则和生产门禁输出确定性结果。
@@ -70,8 +70,8 @@ pnpm install --frozen-lockfile
 | `generate <template>` | 从配置生成 `.automa.json` |
 | `import <workflow>` | 分析录制或导出的工作流与 selector |
 | `merge <skeleton> <recording>` | 把线性录制片段插入工作流骨架 |
-| `validate <workflow> --production` | 检查图结构、模板语法与生产硬规则 |
-| `doctor <workflow>` | 输出 Credentials、Storage Variables 与权限清单 |
+| `validate <workflow> --production` | 检查图结构、模板语法与生产硬规则，拦截内嵌敏感值 |
+| `doctor <workflow>` | 输出 Credentials、Storage Variables、权限及脱敏风险清单 |
 | `check-nl-case <case> <workflow>` | 用自然语言验收用例验证生成物 |
 
 内置模板只有两个：`xhs-publish` 与 `douyin-publish`。它们提供结构脚手架，不包含可跳过现场确认的生产账号、字段映射或页面 selector。
@@ -84,6 +84,7 @@ pnpm install --frozen-lockfile
 - “表字段 → Automa 变量 → 页面元素”的完整映射；
 - selector 来自 Automa 录制或浏览器证据，而不是猜测；
 - Credentials 或 Storage Variables 的凭据来源，不把密钥写进 JSON；
+- 目标电脑、浏览器与 Profile 中同名 Storage 已重新配置，并先通过无发布、无写回的只读预检；
 - 附件字段的真实 URL、文件名与 MIME 结构；
 - 发布、回写等副作用动作的幂等规则与读回方式。
 
@@ -131,7 +132,7 @@ pnpm typecheck
 pnpm test
 ```
 
-当前仓库包含 8 个 Vitest 测试文件和 2 个自然语言验收用例；当前副本已通过 `95/95` 项测试与 TypeScript 检查。发布前还应运行：
+当前仓库包含 8 个 Vitest 测试文件和 2 个自然语言验收用例；当前副本已通过 `97/97` 项测试与 TypeScript 检查。发布前还应运行：
 
 ```bash
 gh skill publish --dry-run .
@@ -141,5 +142,6 @@ gh skill publish --dry-run .
 
 - 仓库不包含真实 appKey、appSecret、access token 或个人 operatorId；示例只使用占位符。
 - `.env`、`node_modules`、构建产物与 macOS 元数据均被忽略。
-- `doctor` 会列出运行时依赖，但不会替你注入凭据。
+- `doctor` 只列出内嵌敏感字段名，不输出真实值；`validate --production` 会用 G19 阻止这类 JSON 继续交付。
+- `.automa.json` 不迁移 Automa Storage；跨电脑或浏览器 Profile 使用时必须重新配置并做只读认证预检。
 - License 尚未选择；如需开放再分发或贡献，请先补充明确许可证。

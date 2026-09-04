@@ -16,6 +16,7 @@ import {
   isKnownNamespace,
 } from '../templating.js';
 import { inspectAttachmentDownloadCode } from '../attachment-download.js';
+import { collectSensitiveGlobalDataKeys } from '../sensitive-global-data.js';
 import ts from 'typescript';
 import type { AutomaWorkflowJson, FlowEdge, FlowNode, LintIssue } from '../types.js';
 
@@ -404,6 +405,18 @@ export function lintWorkflow(json: AutomaWorkflowJson): LintIssue[] {
         )
       );
     }
+  }
+
+  // ── G19：globalData 内嵌敏感值会随工作流文件一起转发 ──────────
+  const inlineSensitiveGlobals = collectSensitiveGlobalDataKeys(json);
+  if (inlineSensitiveGlobals.length > 0) {
+    issues.push(
+      issue(
+        'G19',
+        'warning',
+        `globalData 内嵌敏感值（仅列字段名）：${inlineSensitiveGlobals.join('、')}；共享工作流必须改用目标端 Storage，并轮换已经暴露的凭据`
+      )
+    );
   }
 
   // ── G14：website JS 不得执行钉钉变更请求 ────────────────

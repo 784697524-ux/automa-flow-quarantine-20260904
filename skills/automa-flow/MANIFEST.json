@@ -10,23 +10,23 @@
   "entries": [
     {
       "path": "SKILL.md",
-      "size": 10058,
-      "sha256": "758ef7c3318af1501f2d40dc012a6834fc0f5d0cd9df985e499c89d538a1123f"
+      "size": 10589,
+      "sha256": "6578766ccec7c75806fdb065ce1767319ff4e778f6e03437ba1bcc826fc33341"
     },
     {
       "path": "delivery.md",
-      "size": 7484,
-      "sha256": "8af2742fb51ce629ebfe722c2481339030752c617dc6b5d088ea6b8a7ac5f675"
+      "size": 9156,
+      "sha256": "7fe28d1d0094b0880de36fdbd9e4d63e1089ca96656e32e8c225e81cad373f30"
     },
     {
       "path": "openapi.md",
-      "size": 6835,
-      "sha256": "624806f7bad1ce89b688b00557eb8c0f893125cbb03a5a704f5988fe38bbffc0"
+      "size": 7183,
+      "sha256": "39275aff098500994901f91895846f581a8469873632e7e8d6443997296b54bd"
     },
     {
       "path": "production-hardening.md",
-      "size": 7338,
-      "sha256": "4c7f3e30bb43bd5303e113c888683cdc9cfc1e6c02316490e1bd3f528dd7d732"
+      "size": 8917,
+      "sha256": "9d43e6ac5f9df81d896c0be0366329d054fbba84e39aac7eded9008bda7380bc"
     },
     {
       "path": "recording.md",
@@ -80,13 +80,13 @@
     },
     {
       "path": "vendor/automa-flow/src/cli/index.ts",
-      "size": 18932,
-      "sha256": "e7973132b373ead4bcf560f129a28116eda68c1fe2a0e7d2cf1555b2f1e53c0c"
+      "size": 19299,
+      "sha256": "6189e97199208ed6709ab2a9d6601f01bc2d6f898b2b2b682f0c0433fd0a622a"
     },
     {
       "path": "vendor/automa-flow/src/doctor.ts",
-      "size": 6637,
-      "sha256": "e3e37d762a3a9c863cf444f1fa8750e2b40c158b6b25b5f12d765f1cd0172378"
+      "size": 7832,
+      "sha256": "c178f64765485ecd1bdc71455d42409f69699e855b6ca90be0f15149658a05be"
     },
     {
       "path": "vendor/automa-flow/src/generated/block-registry.json",
@@ -105,8 +105,8 @@
     },
     {
       "path": "vendor/automa-flow/src/lint/lint.ts",
-      "size": 34411,
-      "sha256": "0713c7ec84c911f37c11f29625a72828e4bfd478a6d3c14b052f8977096a8bb2"
+      "size": 34974,
+      "sha256": "a2ee819828f4e3c029b460dbe8d875517327df4eb5a7c666fc0ffa0577a213c0"
     },
     {
       "path": "vendor/automa-flow/src/nl-case.ts",
@@ -122,6 +122,11 @@
       "path": "vendor/automa-flow/src/registry.ts",
       "size": 1439,
       "sha256": "42e029527536d167a15e1f8e2eb06bf296326b4057a3cf91f877fc81cf5e897c"
+    },
+    {
+      "path": "vendor/automa-flow/src/sensitive-global-data.ts",
+      "size": 1240,
+      "sha256": "f234b42d197ea0dc5f62e44125c2eb730d0991e4ed518230dea0cfec5d1e5a9f"
     },
     {
       "path": "vendor/automa-flow/src/templates/douyin-publish.ts",
@@ -145,8 +150,8 @@
     },
     {
       "path": "vendor/automa-flow/test/cli-recording.test.ts",
-      "size": 15549,
-      "sha256": "9d4c66b6c9383f1fe94b7e6eca88947d78a85a13196fc38baad719653fafabb3"
+      "size": 16772,
+      "sha256": "25c50d1f83d8d803d303039a8f159d5c2eed3b4447e55798dd28ea97cadaceba"
     },
     {
       "path": "vendor/automa-flow/test/douyin.test.ts",
@@ -160,8 +165,8 @@
     },
     {
       "path": "vendor/automa-flow/test/lint.test.ts",
-      "size": 18542,
-      "sha256": "8c0bab65f292ca0b61b6a75481ac49985da37ecd38557700430880366e5e0085"
+      "size": 19113,
+      "sha256": "3b255bbbab8c4022b5910d42b23552269371c75b70b366ab5dc31f2db7e3914a"
     },
     {
       "path": "vendor/automa-flow/test/nl-cases.test.ts",

@@ -18,6 +18,7 @@ description: 从自然语言、AI 表格变量、模板和 Automa 录制选择�
 - 终端用户只运行工作流：使用公网安装的 Automa 浏览器扩展即可，不需要本地 fork 扩展，不需要 `packages/automa-flow`，也不需要 Automa 仓库根目录。
 - Agent 或实施者要生成/校验/合并工作流：必须能访问 `automa-flow` CLI。优先使用本 skill 包内的 `vendor/automa-flow`；如果当前工作区就是 Automa 仓库，也可使用 `packages/automa-flow`。
 - 本 skill 包不包含完整 Automa 仓库，不把 `npm run build` 或加载 `build/` 作为交付前置；只有用户明确要求验证 fork 扩展源码时，才另行拿完整仓库处理。
+- 把 JSON 发到另一台电脑或另一个浏览器 Profile 时，必须按 [delivery.md](delivery.md) 重新配置并只读预检目标端 Storage；导出文件不会迁移 Storage 值，源电脑的运行证据也不会自动继承。
 
 2. 定位 CLI 后端：
 
@@ -89,11 +90,12 @@ AI 表格驱动的工作流，用 Automa 变量作为边界：
   原生 `upload-file` 仍需扩展的文件网址访问权限，不假设内联数据能绕过该检查。
 - 应用凭据必须和用户已验证的运行环境一致：明确选择 `Credentials` 或 `Storage -> Variables`，
   不得默认改用 `{{secrets@...}}`，也不得 token 失败后静默切换来源。除非用户明确要求，
-  不把 appKey/appSecret/operatorId 明文写入 JSON。
+  不把 appKey/appSecret/operatorId 明文写入 JSON；明确要求的内联值也只能用于不共享的临时排障文件，不能通过生产交付门禁。
 - 认证变量用字面量名读取，如 `automaRefData('variables', '$$dd_app_id')`。不用
   `'$$' + name` 或模板字符串动态拼变量名，否则 `doctor` 无法列全运行依赖（G18）。
 - 钉钉 notable `operatorId` 必须是当前应用可用的 unionId。如果用户只配置了数字 userId，
-  生成 `userId -> 用户详情 -> unionId -> operatorId` 链路。
+  生成 `userId -> 用户详情 -> unionId -> operatorId` 链路。该 userId 还必须是业务方确认的预期操作者，
+  处于应用可见/授权范围并有目标 Base/Table 权限；不能为了绕过错误静默换成任意可查询用户。
 - 交付回复必须转写 `doctor` 列出的 Credentials 和 Storage Variables，不能只报一种。
 - 钉钉 AI 表格 OpenAPI 的当前模板边界读 [openapi.md](openapi.md)；不要从调试 skill
   或本地 token/env 文件复制任何 secret。

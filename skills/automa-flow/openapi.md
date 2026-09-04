@@ -24,10 +24,11 @@ Automa 浏览器扩展运行在浏览器里，不能直接执行本机 `dws` CLI
 - 先按用户已成功环境明确选择 Automa `Storage -> Credentials` 或 `Storage -> Variables`；不得默认切换。
 - `Credentials` 方案可引用 `{{secrets@dingtalkAppKey}}`、`{{secrets@dingtalkAppSecret}}`。
 - `Storage Variables` 方案使用用户环境中已存在的 `$$` 变量，并在 token 请求前校验非空。
-- 只有用户明确要求明文内联时，才把 `appKey` / `appSecret` / `operatorId` 写进模板配置；默认不要写入 CLI 命令、日志或文档。
+- 只有用户明确要求本机临时排障时，才可把 `appKey` / `appSecret` / `operatorId` 明文内联；该文件不能作为生产或共享交付物，也不要把值写入 CLI 命令、日志或文档。
 - `baseId`、`sheetId/tableId` 是目标表配置，通常写入模板配置；如果同一个工作流要跨环境复用，应新增模板参数或改成 Automa 变量。
 - 不要从 notable 调试 skill 的 `env-config.json`、token 缓存或任何本地凭据文件复制 appKey/appSecret/operatorId。
 - 用户只有数字 userId 时，先用用户详情接口获取 unionId，再将 unionId 作为 notable `operatorId`。
+- 如果用户详情接口返回 `50002`，应在该阶段检查 userId 是否处于当前应用可见/授权范围；不要把它误诊为 notable `operatorId` 格式问题，也不要静默替换成任意可查询用户。预期操作者及其目标 Base/Table 权限须由业务方确认。
 
 ## OpenAPI 能力速查
 

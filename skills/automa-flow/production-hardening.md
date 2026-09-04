@@ -7,13 +7,23 @@
 不先写节点。先记录并用实际样本确认：
 
 1. Automa 版本、执行上下文和触发方式。
-2. 认证来源：`credentials`、`storage-variables` 或用户明确要求的内联值，三者只选一条主链。
+2. 认证来源：生产交付只选 `credentials` 或 `storage-variables` 一条主链；用户明确要求的内联值仅限不共享的临时排障文件。
 3. 用户身份转换链。钉钉 notable `operatorId` 是 unionId；数字 userId 不能直接使用。
 4. 真实 Base/Sheet/字段类型与读回样本，包括单选、多选和附件的实际形状。
 5. 队列唯一开关、数量字段、配额、去重键、结束条件与成功判定。
 6. selector 证据来源：当前 DOM、Automa 录制、成功 JSON 或可核对的 RPA 元素文件。
 
 契约未确认的字段不得靠名称相似自动推断。对用户的真实正例和反例各至少一条，再写筛选代码。
+
+## 跨环境交付门禁
+
+- Automa Storage 按电脑、浏览器和 Profile 隔离；`.automa.json` 不迁移其中的值。每个目标环境都重新运行 `doctor`、配置 names-only 清单并校验非空。
+- 不把 appSecret、token 或其他敏感值写入共享 JSON 的 `globalData`。`validate --production` 出现 G19 时停止交付；`doctor` 只允许显示字段名，不能显示值。
+- 目标端先使用无发布、无写回的安全副本验证：Storage 非空、token、业务方确认的 userId 用户详情、unionId、目标表只读访问。未通过前不触发任何副作用。
+- 用户详情阶段的 `50002` 进入应用可见/授权范围诊断；不能用任意可查询 userId 绕过。取得 unionId 后还要单独确认目标 Base/Table 权限。
+- 源环境的 `browser-run` 或 `side-effect-readback` 不可迁移。证据级别必须绑定具体电脑、浏览器 Profile、Automa 版本和身份配置重新计算。
+- 临时内嵌配置的排障文件不进入交付包、fixture 或版本库；使用后删除，已通过文件、日志或截图暴露的凭据必须轮换。
+- 日志里的 `referenceData.variables` 可能序列化 Storage、token 和签名附件 URL；排障只保留脱敏后的首错 stage/status/code/message，不把完整变量快照作为可分享证据。
 
 ## 成功产物优先
 
@@ -87,6 +97,7 @@
 
 - 节点 id、边 id、逻辑连线唯一，每个输出端口遵守 `maxConnection`；变量声明在读取节点上游。
 - 认证值空、认证来源混用、userId/unionId 传错。
+- 目标端 Storage 缺失、用户详情返回 50002、可取得 unionId 但无目标 Base/Table 权限。
 - 分页正常前进、重复 token、缺 token、超上限、末页。
 - 开关是/否/空白/缺失/多选混合值。
 - 数量 1、3、5、非法数量、配额不足。
@@ -107,6 +118,7 @@
 | 5 side-effect-readback | 目标站强状态/API 成功，且外部表回读值与预期一致 | “端到端成功” |
 
 回复必须标出实际达到的最高级别。不得用“可导入”、“节点是绿色”或“离线测试全过”代替端到端成功。
+证据级别只对记录中的具体电脑、浏览器 Profile、Automa 版本和身份配置有效。
 
 ## 失败诊断
 

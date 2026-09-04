@@ -18,7 +18,7 @@
       <rect x="180" width="168" height="40" rx="20" fill="#10251D" stroke="#2D5C45"/>
       <text x="264" y="26" text-anchor="middle" fill="#BDF8D1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">production lint</text>
       <rect x="360" width="140" height="40" rx="20" fill="#171D2C" stroke="#3C4967"/>
-      <text x="430" y="26" text-anchor="middle" fill="#CFD8F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">95 tests</text>
+      <text x="430" y="26" text-anchor="middle" fill="#CFD8F5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">97 tests</text>
     </g>
   </g>
 

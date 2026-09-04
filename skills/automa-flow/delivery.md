@@ -7,7 +7,7 @@
 普通业务用户：
 
 - 推荐使用公网安装的 Automa 浏览器扩展。
-- 用户只需要导入生成好的 `.automa.json`、配置 Credentials、开启文件网址访问权限。
+- 用户只需要导入生成好的 `.automa.json`、按 `doctor` 配置 Credentials 或 Variables、开启所需权限。
 - 不需要安装本地 fork 扩展，不需要拿到 Automa 仓库，也不需要 `packages/automa-flow`。
 
 Agent 或实施者：
@@ -104,6 +104,16 @@ shasum -a 256 dist/automa-flow.skill dist/automa-flow.zip
 - AI 表附件优先在 website JavaScript 使用 `automaFetch('base64', { url })`，再转成
   Blob/File/DataTransfer；不在 background/popup JS 这样调用。`upload-file` 仍需文件网址权限。
 
+## 跨电脑与浏览器 Profile 交付
+
+- `.automa.json` 只携带工作流和依赖名称，不会迁移另一台电脑、另一浏览器或另一 Profile 的 Automa Storage 值。源电脑已运行成功，只证明源环境成立。
+- 交付前用 `doctor` 导出 names-only 依赖清单；接收方在目标 Profile 中逐项配置同名 Credentials/Variables，名称和值都做非空校验。不要把真实值塞进共享 JSON。
+- 目标端先运行不含发布和写回的只读预检：`Storage 非空 → accessToken → 已确认 userId 的用户详情 → unionId → 目标 AI 表只读请求`。任一步失败即停止，不进入浏览器发布。
+- 用户详情请求返回 `50002` 时，先核对该 userId 是否在当前应用可见/授权范围。扩大应用范围或改用另一身份都要由业务方明确确认；不能随便换成一个“能查到”的用户。
+- 可取得 unionId 仍不代表可读目标 Base/Table；两层权限必须分别验证。目标环境完成只读预检后，才从 `imported` 晋级；真实发布和外部回读成功后才算该目标环境端到端成功。
+- 若排障临时生成了内嵌真实配置的本地文件，不得把它当成交付包、fixture 或版本库文件。使用后删除，并轮换通过文件、日志或截图暴露的凭据。
+- Automa 日志的 `referenceData.variables` 可能包含 Storage、运行时 token 或签名附件 URL。只共享脱敏后的首个失败节点、stage、status、code 和 message，不粘贴完整变量快照。
+
 验证本仓 fork 扩展或录制 UI：
 
 - 在仓库根目录工作。
@@ -153,6 +163,7 @@ node bin/automa-flow.mjs check-nl-case test/nl-cases/<case>.md <output.automa.js
 ```text
 导入 workflow 后，先按 doctor 结果打开 Automa Storage，逐项确认 JSON 引用的
 Credentials 或 Variables。名称必须完全一致，Variables 中的 $$ 前缀不能省略。
+Storage 值不会随 .automa.json 迁移；换电脑、浏览器或 Profile 后必须重新配置并做只读预检。
 如果 HTTP request 返回 400 且 message 是 paramError-operatorId，通常是
 operatorId 为空、误传了 userId，或不是当前钉钉应用可用的 unionId。
 ```

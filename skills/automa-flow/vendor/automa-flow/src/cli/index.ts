@@ -228,13 +228,13 @@ program
 program
   .command('validate <file>')
   .description('对已有 .automa.json 跑生成期 lint')
-  .option('--production', '生产交付硬门禁：拦截动态变量依赖和混用认证来源')
+  .option('--production', '生产交付硬门禁：拦截动态变量依赖、内嵌敏感值和混用认证来源')
   .action((file: string, opts: { production?: boolean }) => {
     const json = JSON.parse(readFileSync(file, 'utf8')) as AutomaWorkflowJson;
     const issues = lintWorkflow(json);
     if (opts.production) {
       for (const lintIssue of issues) {
-        if (lintIssue.rule === 'G18') lintIssue.severity = 'error';
+        if (lintIssue.rule === 'G18' || lintIssue.rule === 'G19') lintIssue.severity = 'error';
       }
       const report = inspectRuntimePrerequisites(json);
       const dingTalkAuthName = /(?:dingtalk|\bding|\bdd[_-]|app[_-]?(?:key|id|secret)|operator[_-]?id)/i;
@@ -415,6 +415,12 @@ function printDoctorReport(report: RuntimeDoctorReport): void {
     console.log('\nStorage Variables 动态引用（无法静态列全）：');
     for (const id of report.dynamicVariableReadNodes) console.log(`  - ${id}`);
     console.log('  请检查节点中拼接出的每个变量名；新建生产 JSON 应使用字面量读取。');
+  }
+
+  if (report.inlineSensitiveGlobalData.length > 0) {
+    console.log('\nglobalData 内嵌敏感值（值已隐藏）：');
+    for (const name of report.inlineSensitiveGlobalData) console.log(`  - ${name}`);
+    console.log('  不要转发此 JSON；请改用目标端 Storage，并轮换已经暴露的凭据。');
   }
 
   console.log('\n通知能力：');

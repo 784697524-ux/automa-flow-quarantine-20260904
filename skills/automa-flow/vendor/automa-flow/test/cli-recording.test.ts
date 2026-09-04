@@ -264,6 +264,35 @@ automaNextBlock({ appId, secret });`,
     expect(`${production.stdout}${production.stderr}`).not.toContain('[P01]');
   });
 
+  it('doctor 脱敏报告 globalData 内嵌凭据，production 阻止继续交付', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'automa-flow-inline-sensitive-'));
+    const outFile = join(dir, 'inline-sensitive.automa.json');
+    const secretValue = 'must-never-appear-in-doctor-output';
+    const builder = new WorkflowBuilder({
+      name: 'inline-sensitive',
+      globalData: { dd_app_id: 'app-id', dd_app_secret: secretValue, ordinary: 'ok' },
+    });
+    builder.addBlock('trigger');
+    writeFileSync(outFile, JSON.stringify(builder.emit()), 'utf8');
+
+    const doctorOutput = execFileSync('node', [bin, 'doctor', outFile], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    expect(doctorOutput).toContain('globalData 内嵌敏感值');
+    expect(doctorOutput).toContain('dd_app_secret');
+    expect(doctorOutput).not.toContain(secretValue);
+
+    const production = spawnSync('node', [bin, 'validate', outFile, '--production'], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    const productionOutput = `${production.stdout}${production.stderr}`;
+    expect(production.status).toBe(1);
+    expect(productionOutput).toContain('[G19]');
+    expect(productionOutput).not.toContain(secretValue);
+  });
+
   it('import --json 输出录制选择器摘要', () => {
     const dir = mkdtempSync(join(tmpdir(), 'automa-flow-import-'));
     const file = join(dir, 'recorded.automa.json');

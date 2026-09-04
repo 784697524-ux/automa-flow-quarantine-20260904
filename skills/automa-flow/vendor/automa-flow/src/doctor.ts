@@ -1,5 +1,6 @@
 import { collectRefsInData } from './templating.js';
 import { inspectAttachmentDownloadCode } from './attachment-download.js';
+import { collectSensitiveGlobalDataKeys } from './sensitive-global-data.js';
 import type { AutomaWorkflowJson } from './types.js';
 
 export interface RuntimeDoctorReport {
@@ -7,6 +8,7 @@ export interface RuntimeDoctorReport {
   secrets: string[];
   storageVariables: string[];
   dynamicVariableReadNodes: string[];
+  inlineSensitiveGlobalData: string[];
   notificationBlocks: Array<{ id: string; title?: string; message?: string }>;
   workflowNotificationEnabled: boolean;
   uploads: Array<{ id: string; selector?: string; filePaths: string[] }>;
@@ -78,6 +80,7 @@ export function inspectRuntimePrerequisites(json: AutomaWorkflowJson): RuntimeDo
   }
 
   const hints: string[] = [];
+  const inlineSensitiveGlobalData = collectSensitiveGlobalDataKeys(json);
   if (secrets.size > 0) {
     hints.push(
       '导入后先到 Automa -> Storage -> Credentials 创建同名凭据；值为空会被替换成空字符串。'
@@ -93,10 +96,26 @@ export function inspectRuntimePrerequisites(json: AutomaWorkflowJson): RuntimeDo
     hints.push(
       '导入后先到 Automa -> Storage -> Variables 确认同名持久变量存在且非空；$$ 前缀必须保留。'
     );
+    hints.push(
+      'Storage 属于当前电脑和浏览器 profile，发送 .automa.json 不会迁移这些值；每个目标环境都必须重新配置并做只读认证预检。'
+    );
   }
   if (dynamicVariableReadNodes.size > 0) {
     hints.push(
       '发现 automaRefData(variables, 动态表达式)，doctor 无法穷举必填名称。生产生成时应把认证变量写成字面量读取，例如 automaRefData("variables", "$$dd_app_id")。'
+    );
+  }
+  if (secrets.size > 0 || storageVariables.size > 0 || dynamicVariableReadNodes.size > 0) {
+    hints.push(
+      'Credentials 和 Variables 属于当前电脑与浏览器 Profile，发送 .automa.json 不会迁移这些值；每个目标环境都必须重新配置并做只读认证预检。'
+    );
+    hints.push(
+      'Automa 日志的 referenceData.variables 可能包含敏感值；只共享脱敏后的首个失败节点、stage、status、code 和 message，不粘贴完整变量快照。'
+    );
+  }
+  if (inlineSensitiveGlobalData.length > 0) {
+    hints.push(
+      'globalData 中存在内嵌敏感值；doctor 只显示字段名。该 JSON 不适合作为共享交付物，请改用目标端 Storage，并轮换已经通过文件或截图暴露的凭据。'
     );
   }
   if (secrets.size > 0 && storageVariables.size > 0) {
@@ -138,6 +157,7 @@ export function inspectRuntimePrerequisites(json: AutomaWorkflowJson): RuntimeDo
     secrets: [...secrets].sort(),
     storageVariables: [...storageVariables].sort(),
     dynamicVariableReadNodes: [...dynamicVariableReadNodes].sort(),
+    inlineSensitiveGlobalData,
     notificationBlocks,
     workflowNotificationEnabled: json.settings?.notification === true,
     uploads,

@@ -447,6 +447,20 @@ automaNextBlock();`,
     expect(rules(lintWorkflow(b.emit()), 'G18')).toHaveLength(1);
   });
 
+  it('G19: globalData 内嵌敏感值时只报告字段名', () => {
+    const secretValue = 'must-never-appear-in-diagnostics';
+    const b = new WorkflowBuilder({
+      name: 't',
+      globalData: { dd_app_id: 'app-id', dd_app_secret: secretValue, ordinary: 'ok' },
+    });
+    b.addBlock('trigger');
+    const issues = rules(lintWorkflow(b.emit()), 'G19');
+    expect(issues).toHaveLength(1);
+    expect(issues[0]?.severity).toBe('warning');
+    expect(issues[0]?.message).toContain('dd_app_secret');
+    expect(issues[0]?.message).not.toContain(secretValue);
+  });
+
   it('B:webhook URL 为空', () => {
     const b = new WorkflowBuilder({ name: 't' });
     const t = b.addBlock('trigger');
